@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Игра">
+<meta name="theme-color" content="#F2F2F7">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Игра</title>
+<style>
+:root{color-scheme:light only}
+html,body{margin:0;height:100%;background:#F2F2F7;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;overflow:hidden}
+#app{position:fixed;top:env(safe-area-inset-top);left:0;right:0;bottom:0;border:0;width:100%;height:calc(100% - env(safe-area-inset-top));background:#F2F2F7}
+#setup{display:none;padding:calc(env(safe-area-inset-top) + 40px) 22px 22px;max-width:480px;margin:0 auto}
+h1{font-size:28px;margin:0 0 8px}
+p{color:#6E6E73;font-size:15px;line-height:1.45}
+textarea{width:100%;box-sizing:border-box;min-height:110px;border:none;border-radius:12px;padding:12px;font:inherit;font-size:16px;background:#fff;color:#000;-webkit-text-fill-color:#000;caret-color:#007AFF;outline:none;resize:none}
+button{width:100%;margin-top:12px;border:none;border-radius:14px;padding:14px;font:inherit;font-size:17px;font-weight:600;background:#007AFF;color:#fff}
+#err{color:#FF3B30;font-size:14px;margin-top:8px;display:none}
+#load{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#AF52DE;font-size:15px;pointer-events:none;transition:opacity .4s}
+</style>
+</head>
+<body>
+<div id="setup">
+  <h1>Игра</h1>
+  <p>Вставь свою ссылку на игру — ту, что заканчивается на <b>/exec?k=…</b>. Она сохранится только на этом телефоне.</p>
+  <textarea id="u" placeholder="https://script.google.com/macros/s/…/exec?k=…"></textarea>
+  <div id="err">Это не похоже на ссылку игры. Нужна ссылка вида https://script.google.com/macros/s/…/exec?k=…</div>
+  <button id="save">Сохранить и открыть</button>
+</div>
+<div id="load">Загрузка…</div>
+<script>
+var KEY = 'gameUrl';
+function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+function ok(v) { return /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec\?k=\w+$/.test(v); }
+
+if (location.hash === '#reset') { try { localStorage.removeItem(KEY); } catch (e) {} history.replaceState(null, '', location.pathname); }
+
+function open(url) {
+  document.getElementById('setup').style.display = 'none';
+  var f = document.createElement('iframe');
+  f.id = 'app'; f.src = url; f.setAttribute('allow', 'clipboard-write');
+  f.onload = function () { document.getElementById('load').style.opacity = 0; };
+  document.body.appendChild(f);
+}
+
+var saved = get();
+if (saved && ok(saved)) open(saved);
+else {
+  document.getElementById('load').style.display = 'none';
+  document.getElementById('setup').style.display = 'block';
+}
+document.getElementById('save').onclick = function () {
+  var v = document.getElementById('u').value.trim();
+  if (!ok(v)) { document.getElementById('err').style.display = 'block'; return; }
+  set(v); document.getElementById('load').style.display = 'flex'; open(v);
+};
+document.getElementById('u').oninput = function () { document.getElementById('err').style.display = 'none'; };
+</script>
+</body>
+</html>
