@@ -78,6 +78,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
   <p>Вставь свою ссылку на игру — ту, что заканчивается на <b>/exec?k=…</b>. Она сохранится только на этом телефоне.</p>
   <textarea id="u" placeholder="https://script.google.com/macros/s/…/exec?k=…"></textarea>
   <div id="uerr" style="color:#FF3B30;font-size:14px;margin-top:8px;display:none">Это не похоже на ссылку игры. Нужна ссылка вида https://script.google.com/macros/s/…/exec?k=…</div>
+  <button class="btn" id="upaste" style="margin-top:12px;background:#E9E9EE;color:#000">📋 Вставить из буфера</button>
   <button class="btn" id="usave" style="margin-top:12px;background:#007AFF;color:#fff">Сохранить и открыть</button>
 </div>
 <div id="load">
@@ -214,6 +215,11 @@ function load() {
   if (!API_URL) {
     $('load').className = 'hide'; $('setup').style.display = 'block';
     $('u').oninput = () => $('uerr').style.display = 'none';
+    $('upaste').onclick = () => {
+      if (!navigator.clipboard || !navigator.clipboard.readText) { $('uerr').textContent = 'Телефон не даёт прочитать буфер — зажми поле и выбери «Вставить».'; $('uerr').style.display = 'block'; return; }
+      navigator.clipboard.readText().then(t => { $('u').value = (t || '').trim(); $('uerr').style.display = 'none'; })
+        .catch(() => { $('uerr').textContent = 'Не получилось прочитать буфер — зажми поле и выбери «Вставить».'; $('uerr').style.display = 'block'; });
+    };
     $('usave').onclick = () => {
       const v = $('u').value.trim();
       if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec\?k=\w+$/.test(v)) { $('uerr').style.display = 'block'; return; }
@@ -488,11 +494,6 @@ $('inp').oninput = () => $('err').style.display = 'none';
 $('inp').onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('add').onclick(); } };
 function grow() { const i = $('inp'); i.style.height = 'auto'; i.style.height = i.scrollHeight + 'px'; }
 $('inp').addEventListener('input', grow);
-// iOS: если поле получило фокус без клавиатуры, повторное нажатие её не открывает — сбрасываем фокус перед касанием
-document.addEventListener('touchstart', e => {
-  const el = e.target;
-  if ((el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') && document.activeElement === el) el.blur();
-}, { passive: true });
 let legOn = false;
 $('lg').onclick = () => { legOn = !legOn; $('lg').classList.toggle('on', legOn); $('lgw').style.display = legOn ? 'block' : 'none'; };
 const when = seg('when', v => { $('adt').classList.toggle('on', v !== 'Без даты'); $('atime').style.display = v === 'Встреча' ? '' : 'none'; $('aerr').style.display = 'none'; });
