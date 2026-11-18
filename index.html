@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Игра">
-<meta name="theme-color" content="#F2F2F7">
+<meta name="theme-color" content="#EDF0EA">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>Игра</title>
@@ -23,7 +23,7 @@ body{margin:0;background:#F2F2F7;color:#000;font-family:-apple-system,BlinkMacSy
 .h2{font-size:20px;font-weight:600;letter-spacing:-.3px}
 .seg{display:flex;background:#E9E9EE;border-radius:10px;padding:3px;gap:3px}
 .seg button{flex:1;border:none;background:transparent;border-radius:8px;padding:8px;font:inherit;font-size:13px;white-space:nowrap;color:#000;transition:all .2s}
-.seg button.on{background:#007AFF;color:#fff;font-weight:600}
+.seg button.on{background:#0F3B2C;color:#fff;font-weight:600}
 .r{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:.5px solid #E5E5EA;transition:opacity .3s}
 .r:first-child{border-top:none}
 .ck{width:26px;height:26px;border-radius:50%;border:1.5px solid #C7C7CC;background:transparent;flex:none;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:all .2s;font-size:14px}
@@ -43,8 +43,8 @@ body{margin:0;background:#F2F2F7;color:#000;font-family:-apple-system,BlinkMacSy
 #lov.on .ln{opacity:1}
 .pill{font-size:13px;font-weight:600;padding:3px 9px;border-radius:99px;white-space:nowrap}
 .btn{border:none;border-radius:14px;padding:12px;font:inherit;font-size:16px;font-weight:600;width:100%;cursor:pointer}
-.lnk{border:none;background:transparent;color:#007AFF;font:inherit;font-size:14px;padding:0;cursor:pointer}
-input,textarea{width:100%;background:#F2F2F7;border:none;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;color:#000;-webkit-text-fill-color:#000;caret-color:#007AFF;outline:none;resize:none}
+.lnk{border:none;background:transparent;color:#1C1C1E;font-weight:600;font:inherit;font-size:14px;padding:0;cursor:pointer}
+input,textarea{width:100%;background:#F2F2F7;border:none;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;color:#000;-webkit-text-fill-color:#000;caret-color:#C9971C;outline:none;resize:none}
 input::placeholder,textarea::placeholder{color:#8E8E93;-webkit-text-fill-color:#8E8E93}
 input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-height:44px;text-align:left}
 .dt{display:none;gap:8px;margin-top:8px}.dt.on{display:flex}
@@ -69,7 +69,129 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
 @keyframes fade{to{opacity:1}}
 #bar{width:140px;height:3px;border-radius:2px;background:#F3E6C2;margin-top:34px;overflow:hidden}
 #bar i{display:block;width:40%;height:100%;border-radius:2px;background:#E0A92A;animation:run 1.2s ease-in-out infinite}
-@keyframes run{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}
+@keyframes run{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
+
+/* ===== GTA XII theme ===== */
+body{background:#F4F2EE;color:#1C1C1E}
+.a{background:#F4F2EE}
+.g{border-radius:22px}
+.c{border-radius:22px;background:#fff}
+.cap{color:#8A8578}
+input,textarea{background:#F4F2EE}
+.seg{background:#EAE6DD;border-radius:12px}
+#tf,#flt{background:transparent;padding:0;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+#tf button,#flt button{flex:none;background:#EAE6DD;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:500}
+#tf button.on,#flt button.on{background:#0F3B2C;color:#fff}
+#list.g{background:transparent;border-radius:0;overflow:visible}
+.tw{background:#fff;border-radius:18px;overflow:hidden;margin-bottom:8px;transition:opacity .3s}
+.tw.legw{background:#FFF8E6;box-shadow:inset 0 0 0 1.5px #E0A92A}
+.tw .r{border-top:none}
+.mt{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.mc{font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px;background:#F1EEE7;color:#6E6A60;white-space:nowrap}
+.mc.late{background:#FFE5E3;color:#D70015}.mc.today{background:#FFF0DB;color:#B25E00}.mc.leg{background:#FCEFC9;color:#9A6B00}
+.pill{background:#FCEFC9;color:#9A6B00}
+.det{background:#FAF8F3}
+.lb{font-size:11px;letter-spacing:1.6px;font-weight:600;color:#B08A2E}
+.fab{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));width:60px;height:60px;border-radius:50%;border:none;background:#0F3B2C;color:#F3D27A;font-size:30px;line-height:1;cursor:pointer;z-index:12;box-shadow:0 8px 24px rgba(28,28,30,.25);display:flex;align-items:center;justify-content:center;transition:transform .15s}
+.fab:active{transform:scale(.92)}
+#shb{position:fixed;inset:0;background:rgba(28,28,30,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:13}
+#shb.on{opacity:1;pointer-events:auto}
+#sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh!important;overflow-y:auto;transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.8,.2,1)!important;z-index:14;background:#fff;border-radius:26px 26px 0 0;padding:10px 4px calc(16px + env(safe-area-inset-bottom));max-width:520px;margin:0 auto}
+#sheet.on{transform:none}
+#sheet>.g{margin-bottom:0!important;background:#fff}
+.grab{width:40px;height:5px;border-radius:3px;background:#DDD8CC;margin:0 auto 6px}
+.wk{display:flex;gap:8px;align-items:flex-end;height:96px;margin-top:12px}
+.wb{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.wb i{display:block;width:100%;max-width:24px;border-radius:7px;background:#EAE6DD;transition:height .6s}
+.wb.on i{background:#0F3B2C}.wb.td i{background:#E0A92A}
+.rwc{flex:none;width:122px;background:#fff;border-radius:18px;padding:12px;scroll-snap-align:start}
+.rwc.on{background:#FFF8E6;box-shadow:inset 0 0 0 1.5px #E0A92A}
+.fxp{position:fixed;font-weight:800;color:#C9971C;font-size:22px;pointer-events:none;z-index:15;animation:fxu 1.1s ease-out forwards}
+@keyframes fxu{0%{opacity:0;transform:translateY(0) scale(.6)}20%{opacity:1;transform:translateY(-10px) scale(1.15)}100%{opacity:0;transform:translateY(-70px)}}
+#t1{background:#fff!important;color:#1C1C1E!important}
+#t1:hover,#t1:focus{background:#fff!important}
+
+/* ===== Капитал ===== */
+body,.a{background:#EDF0EA;color:#14211B}
+.c,.g{background:#fff}
+.cap{color:#7B857F}
+input,textarea{background:#F3F5F1}
+.seg{background:#F1F4F0}.seg button.on{background:#0F3B2C;color:#fff}
+.lnk{color:#0F3B2C}
+.lb{color:#7B857F;letter-spacing:1.6px}
+#hello{font-size:26px;font-weight:800;letter-spacing:-.6px;margin-top:2px;white-space:nowrap;overflow:hidden}
+.hav{width:44px;height:44px;border-radius:50%;background:#0F3B2C;display:flex;align-items:center;justify-content:center;flex:none;margin-left:10px}
+#rk.hero{display:block;position:relative;overflow:hidden;text-align:left;color:#fff;border-radius:28px;padding:20px 20px 18px;background:radial-gradient(90% 120% at 100% 0%,#22704F 0%,transparent 60%),linear-gradient(160deg,#124634,#0B2E22);box-shadow:0 14px 30px -12px #0F3B2C88;width:100%}
+#rk.hero::after{content:"";position:absolute;right:-40px;bottom:-60px;width:200px;height:200px;border-radius:50%;border:28px solid #ffffff08;pointer-events:none}
+.hrow{display:flex;justify-content:space-between;align-items:center}
+.rkb{display:flex;align-items:center;gap:10px}
+.badge{width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#F3D27A,#D4A646);color:#0F3B2C;display:grid;place-items:center;font-weight:900;font-size:18px}
+.rkn{font-weight:700;font-size:16px}.rks{font-size:12px;color:#ffffffa0}
+.big{font-size:48px;font-weight:800;letter-spacing:-1.5px;line-height:1;margin-top:18px;font-variant-numeric:tabular-nums}
+.big small{font-size:17px;color:#F3D27A;font-weight:700;letter-spacing:0;margin-left:6px}
+.seg10{display:flex;gap:4px;margin:16px 0 8px}
+.seg10 i{flex:1;height:8px;border-radius:3px;background:#ffffff1f;overflow:hidden;position:relative}
+.seg10 i b{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#F3D27A,#D4A646);transition:width .8s}
+.hm{display:flex;justify-content:space-between;font-size:13px;color:#ffffffb0}.hm b{color:#fff}
+.gift{margin-top:12px;display:inline-flex;gap:6px;align-items:center;background:#ffffff14;border:1px solid #ffffff1f;border-radius:99px;padding:6px 11px;font-size:12.5px;font-weight:600;color:#F3D27A}
+.wb.on i{background:#0F3B2C}.wb.td i{background:linear-gradient(180deg,#F3D27A,#D4A646)}.wb i{background:#EEF1EC}
+#tf button,#flt button{background:#fff;color:#14211B;font-weight:600}
+#tf button.on,#flt button.on{background:#0F3B2C;color:#fff}
+.tw{position:relative;border-radius:20px}
+.tw::before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:4px;border-radius:0 4px 4px 0;background:var(--c,#1F8A63);z-index:1}
+.tw.legw{background:linear-gradient(135deg,#FFF7E0,#fff 70%);box-shadow:inset 0 0 0 1.5px #D4A646}
+.mc{background:#F1F4F0;color:#5E6862;font-weight:600}
+.mc.late{background:#FDE7E5;color:#D6453D}.mc.today{background:#FFF1D6;color:#A86A00}
+.xpw{flex:none;text-align:right}
+.dots{display:flex;gap:2px;justify-content:flex-end;margin-top:5px}
+.dots i{width:5px;height:5px;border-radius:50%;background:#E2E6DF}.dots i.on{background:#14211B}.dots.im i.on{background:#D4A646}
+.det{background:#F6F8F4}
+.rwc{background:#fff;box-shadow:none}
+.rwc.on{background:#FFF7E0;box-shadow:inset 0 0 0 1.5px #D4A646}
+.rwc.next{background:#0F3B2C;color:#fff}.rwc.next .cap{color:#F3D27A!important}
+.fab{background:#0F3B2C;color:#F3D27A;border-radius:22px;width:62px;height:62px;box-shadow:0 10px 24px -6px #0F3B2C99}
+.lgb{background:#FFF7E0;color:#9B7420}.lgb.on{background:#FFEFC2;color:#7A5A12;border-color:#D4A646}
+#load{z-index:70!important}
+#toast{background:#14211B!important;color:#fff}#toast .lnk{color:#F3D27A}#ti{background:#ffffff1a!important;color:#F3D27A!important}
+.fxp{color:#D4A646}
+.dtl{display:grid;grid-template-columns:1.3fr 1fr;gap:8px;margin-top:2px}
+.dtl label{display:block;font-size:12px;color:#7B857F;margin:0 2px 5px}
+.dtl input{width:100%}
+.dclr{border:none;background:none;color:#7B857F;font:inherit;font-size:13px;padding:6px 2px;cursor:pointer}
+#t2{border:none}
+/* splash */
+#load{background:radial-gradient(circle at 50% 40%,#1D6B4C 0%,#0B2E22 60%,#06170F 100%)!important}
+#ttl{color:#F3D27A!important;font-size:24px!important;letter-spacing:.5px!important;font-weight:800!important}
+#sub{color:#ffffff99!important}
+#bar{background:#ffffff1f!important}#bar i{background:#F3D27A!important}
+/* level up */
+#ov{position:fixed;inset:0;z-index:60;display:none!important;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle at 50% 42%,#1D6B4C 0%,#0B2E22 55%,#06170F 100%)!important;color:#fff;overflow:hidden;text-align:center;opacity:1!important;pointer-events:auto!important;padding:0!important}
+#ov.on{display:flex!important}
+#ov canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#ov .rays{position:absolute;top:42%;left:50%;width:900px;height:900px;margin:-450px 0 0 -450px;background:repeating-conic-gradient(from 0deg,#F3D27A22 0deg 8deg,transparent 8deg 24deg);border-radius:50%;-webkit-mask:radial-gradient(circle,#000 0,transparent 60%);mask:radial-gradient(circle,#000 0,transparent 60%);opacity:0;animation:lvrays 18s linear infinite,lvfin .8s .5s forwards}
+@keyframes lvrays{to{transform:rotate(360deg)}}
+@keyframes lvfin{to{opacity:1}}
+.lvc{position:relative;display:flex;flex-direction:column;align-items:center;padding:0 28px;width:100%;max-width:420px}
+.lvt{font-size:12px;letter-spacing:5px;color:#F3D27A;font-weight:700;opacity:0;animation:lvfu .5s .2s forwards}
+.medal{position:relative;width:172px;height:172px;margin:44px 0 10px}
+.medal svg{position:absolute;inset:0}
+.medal .rg{stroke-dasharray:502;stroke-dashoffset:502;animation:lvfill 1.1s .35s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes lvfill{to{stroke-dashoffset:0}}
+.medal .core{position:absolute;inset:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE9A8,#D4A646 55%,#9B7420);display:grid;place-items:center;box-shadow:0 0 0 6px #0B2E22,0 0 60px #F3D27A66;transform:scale(0);animation:lvpop .6s 1.3s cubic-bezier(.2,1.7,.4,1) forwards}
+.medal .core span{font-size:64px;font-weight:900;color:#0F3B2C;line-height:1;text-shadow:0 1px 0 #FFF3C4}
+.medal .crown{position:absolute;left:50%;top:-30px;width:56px;height:40px;margin-left:-28px;inset:auto;opacity:0;transform:translateY(-40px);animation:lvdrop .5s 1.75s cubic-bezier(.3,1.6,.5,1) forwards}
+.medal .old{position:absolute;inset:18px;display:grid;place-items:center;font-size:56px;font-weight:900;color:#ffffff55;animation:lvout .35s 1.25s forwards}
+@keyframes lvpop{to{transform:scale(1)}}
+@keyframes lvdrop{to{opacity:1;transform:none}}
+@keyframes lvout{to{opacity:0;transform:scale(.4)}}
+@keyframes lvfu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.lvn{font-size:32px;font-weight:800;letter-spacing:-.6px;opacity:0;animation:lvfu .5s 1.9s forwards}
+.lvx{font-size:13px;color:#ffffff99;margin-top:4px;opacity:0;animation:lvfu .5s 2s forwards}
+.prize{margin-top:22px;width:100%;border-radius:22px;padding:16px;background:linear-gradient(145deg,#FFF6DA,#F3D27A);color:#0F3B2C;opacity:0;animation:lvfu .6s 2.3s forwards;box-shadow:0 18px 40px -12px #000a}
+.prize .pk{font-size:11px;letter-spacing:2px;font-weight:800;opacity:.7}
+.prize .pv{font-size:19px;font-weight:800;margin-top:6px}
+#ook{margin-top:18px;width:100%;border:none;border-radius:16px;padding:16px;background:#fff;color:#0F3B2C;font-size:16px;font-weight:800;cursor:pointer;opacity:0;animation:lvfu .5s 2.6s forwards}
+.lvs{margin-top:10px;font-size:12px;color:#ffffff66;opacity:0;animation:lvfu .5s 2.7s forwards}
 </style>
 </head>
 <body>
@@ -79,55 +201,59 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
   <textarea id="u" placeholder="https://script.google.com/macros/s/…/exec?k=…"></textarea>
   <div id="uerr" style="color:#FF3B30;font-size:14px;margin-top:8px;display:none">Это не похоже на ссылку игры. Нужна ссылка вида https://script.google.com/macros/s/…/exec?k=…</div>
   <button class="btn" id="upaste" style="margin-top:12px;background:#E9E9EE;color:#000">📋 Вставить из буфера</button>
-  <button class="btn" id="usave" style="margin-top:12px;background:#007AFF;color:#fff">Сохранить и открыть</button>
+  <button class="btn" id="usave" style="margin-top:12px;background:#0F3B2C;color:#fff">Сохранить и открыть</button>
 </div>
 <div id="load">
-  <svg id="crown" viewBox="0 0 100 100"><path d="M24 66 L20 36 L36 48 L50 28 L64 48 L80 36 L76 66 Z" fill="#E0A92A"/><circle cx="20" cy="36" r="3.4" fill="#E0A92A"/><circle cx="50" cy="28" r="3.4" fill="#E0A92A"/><circle cx="80" cy="36" r="3.4" fill="#E0A92A"/><rect x="24" y="70" width="52" height="7" rx="3" fill="#E0A92A"/></svg>
-  <div id="ttl">GTA XII</div>
+  <svg id="crown" viewBox="0 0 100 100"><path d="M24 66 L20 36 L36 48 L50 28 L64 48 L80 36 L76 66 Z" fill="#F3D27A"/><circle cx="20" cy="36" r="3.4" fill="#F3D27A"/><circle cx="50" cy="28" r="3.4" fill="#F3D27A"/><circle cx="80" cy="36" r="3.4" fill="#F3D27A"/><rect x="24" y="70" width="52" height="7" rx="3" fill="#F3D27A"/></svg>
+  <div id="ttl">Здравствуйте, наследник</div>
   <div id="sub">Get Rich or Die Trying</div>
   <div id="bar"><i></i></div>
 </div>
 <div class="a" id="app" style="display:none">
-  <div class="cap" id="date">&nbsp;</div>
-  <div style="font-size:30px;font-weight:700;letter-spacing:-.5px;margin-bottom:14px">Игра</div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin:2px 4px 14px">
+    <div style="min-width:0;flex:1"><div class="lb" id="date">&nbsp;</div><div id="hello">Здравствуйте, Гагик Карапетович</div></div>
+    <div class="hav"><svg width="24" height="24" viewBox="0 0 100 100"><path d="M24 66 L20 36 L36 48 L50 28 L64 48 L80 36 L76 66 Z" fill="#F3D27A"/><rect x="24" y="70" width="52" height="7" rx="3" fill="#F3D27A"/></svg></div>
+  </div>
 
-  <button class="c" id="rk" style="display:flex;align-items:center;gap:16px">
-    <svg width="88" height="88" viewBox="0 0 92 92" style="flex:none">
-      <circle cx="46" cy="46" r="40" fill="none" stroke="#F1E4FA" stroke-width="10"/>
-      <circle id="ring" class="ring" cx="46" cy="46" r="40" fill="none" stroke="#AF52DE" stroke-width="10" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3" transform="rotate(-90 46 46)"/>
-      <text id="rn" x="46" y="55" text-anchor="middle" style="font-size:26px;font-weight:600;fill:#000">·</text>
-    </svg>
-    <div style="min-width:0;flex:1">
-      <div class="cap">Звание</div>
-      <div id="rt" style="font-size:20px;font-weight:600"><div class="sk" style="width:120px"></div></div>
-      <div id="xp" style="font-size:15px;color:#AF52DE;font-weight:600;margin-top:2px"></div>
-      <div id="rs" class="cap"></div>
+  <button class="c hero" id="rk">
+    <div class="hrow">
+      <div class="rkb"><div class="badge" id="rn">·</div><div><div class="rkn" id="rt">&nbsp;</div><div class="rks" id="rsub">звание</div></div></div>
+      <span class="rks">разбивка <span id="chev" style="display:inline-block;transition:transform .2s">⌄</span></span>
     </div>
-    <span id="chev" style="color:#C7C7CC;transition:transform .2s;font-size:18px">⌄</span>
+    <div class="big" id="xp">&nbsp;</div>
+    <div class="seg10" id="seg10"></div>
+    <div class="hm" id="rs"></div>
+    <div class="gift" id="nrw"></div>
+    <svg style="display:none"><circle id="ring"/></svg>
   </button>
   <div id="bd" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div class="g" style="margin-top:8px" id="bdl"></div></div>
+  <div class="c" style="margin-top:10px;cursor:default">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:700;font-size:15px">Неделя</span><span class="cap" id="wkl"></span></div>
+    <div class="wk" id="wkb"></div>
+  </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-    <button class="c" id="t1" style="height:122px;display:flex;flex-direction:column;justify-content:space-between">
+    <button class="c" id="t1" style="height:128px;display:flex;flex-direction:column;justify-content:space-between">
       <div class="cap">🏢 Свободно</div>
-      <div id="v1" style="font-size:26px;font-weight:600">—</div>
-      <div><div style="height:4px;background:#E9E9EE;border-radius:2px;overflow:hidden"><div id="b1" style="width:0;height:100%;background:#007AFF;transition:width .6s"></div></div>
+      <div id="v1" style="font-size:26px;font-weight:800;letter-spacing:-.5px">—</div>
+      <div><div style="height:4px;background:#E9E9EE;border-radius:2px;overflow:hidden"><div id="b1" style="width:0;height:100%;background:#0F3B2C;border-radius:2px;transition:width .6s"></div></div>
       <div id="s1" class="cap" style="margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">&nbsp;</div></div>
     </button>
-    <button class="c" id="t2" style="height:122px;display:flex;flex-direction:column;justify-content:space-between">
+    <button class="c" id="t2" style="height:128px;display:flex;flex-direction:column;justify-content:space-between">
       <div class="cap" id="l2">💰 Долг сейчас</div>
-      <div id="v2" style="font-size:26px;font-weight:600">—</div>
+      <div id="v2" style="font-size:26px;font-weight:800;letter-spacing:-.5px">—</div>
       <div><div id="tr2" style="height:4px;background:#E9E9EE;border-radius:2px;overflow:hidden"><div id="b2" style="width:0;height:100%;background:#fff;transition:width .6s"></div></div>
       <div id="s2" class="cap" style="margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">&nbsp;</div></div>
     </button>
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin:22px 4px 8px">
-    <span class="h2">Задачи</span>
-    <button class="lnk" id="nb" style="font-size:15px">＋ Новая</button>
+    <span style="font-size:22px;font-weight:800;letter-spacing:-.4px">Задачи</span>
+    <span class="cap" id="cnt2"></span><button class="lnk" id="nb" style="display:none">＋ Новая</button>
   </div>
 
-  <div id="sheet" style="max-height:0;overflow:hidden;transition:max-height .35s ease">
+  <div id="shb"></div>
+  <div id="sheet" style="max-height:0;overflow:hidden;transition:max-height .35s ease"><div class="grab"></div><div style="font-size:20px;font-weight:800;padding:4px 14px 8px">Новая задача</div>
     <div class="g" style="padding:14px;margin-bottom:10px">
       <textarea id="inp" rows="1" placeholder="Что нужно сделать" style="overflow:hidden;line-height:1.35"></textarea>
       <div id="err" style="font-size:13px;color:#FF3B30;margin-top:6px;display:none">Напиши задачу</div>
@@ -138,16 +264,16 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
       <div class="seg" id="goal"><button class="on">Бизнес</button><button>Свобода</button></div>
       <div class="cap" style="margin:12px 0 6px">Повтор</div>
       <div class="seg" id="rep"><button class="on">Нет</button><button>Ежемесячно</button><button>Еженедельно</button></div>
-      <div class="cap" style="margin:12px 0 6px">Когда</div>
-      <div class="seg" id="when"><button class="on">Без даты</button><button>К сроку</button><button>Встреча</button></div>
-      <div class="dt" id="adt"><input type="date" id="adate" style="flex:1"><input type="time" id="atime" style="flex:1;display:none"></div>
+      <div class="cap" style="margin:12px 0 6px">Дата и время <span style="opacity:.7">— необязательно</span></div>
+      <div class="dtl" id="adt"><div><label for="adate">Дата</label><input type="date" id="adate"></div><div><label for="atime">Время</label><input type="time" id="atime"></div></div>
+      <div class="cap" style="margin-top:6px;display:flex;justify-content:space-between;align-items:center"><span>пусто — без даты · дата — срок · дата и время — встреча</span><button class="dclr" id="aclr" type="button">Очистить</button></div>
       <div id="aerr" style="font-size:13px;color:#FF3B30;margin-top:6px;display:none"></div>
       <button class="lgb" id="lg">⭐ Легендарная задача</button>
       <div id="lgw" style="display:none;margin-top:8px">
         <textarea id="lgt" rows="2" placeholder="Почему это легендарно: кто этот человек или что на кону (видит только арбитр)"></textarea>
         <div class="cap" style="margin-top:6px">500 XP — только когда результат достигнут. Не больше 3 в месяц. Решение — за арбитром.</div>
       </div>
-      <button class="btn" id="add" style="margin-top:14px;background:#007AFF;color:#fff">Добавить</button>
+      <button class="btn" id="add" style="margin-top:14px;background:#0F3B2C;color:#fff">Добавить</button>
     </div>
   </div>
 
@@ -155,13 +281,15 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
   <div class="seg" id="flt" style="margin-bottom:8px"><button class="on">Все</button><button>Бизнес</button><button>Свобода</button></div>
   <div class="g" id="list"><div class="r"><div class="sk" style="width:70%"></div></div><div class="r"><div class="sk" style="width:55%"></div></div></div>
 
-  <div class="h2" style="margin:22px 4px 8px">Награды</div>
-  <div class="g" id="rw"></div>
+  <div style="font-size:22px;font-weight:800;letter-spacing:-.4px;margin:22px 4px 10px">Награды</div>
+  <div id="rw" style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;-webkit-overflow-scrolling:touch"></div>
+  <div style="height:70px"></div>
   <div class="cap" style="text-align:center;margin-top:16px" id="season"></div>
 </div>
 
+<button class="fab" id="fab" aria-label="Новая задача">＋</button>
 <div id="toast" style="position:fixed;left:14px;right:14px;bottom:20px;max-width:492px;margin:0 auto;background:#fff;border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(20px);transition:all .3s;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.12);z-index:4;pointer-events:none">
-  <div id="ti" style="width:32px;height:32px;border-radius:50%;background:#F1E4FA;color:#AF52DE;display:flex;align-items:center;justify-content:center;flex:none">★</div><span id="tt" style="flex:1"></span><button id="tu" class="lnk" style="display:none;pointer-events:auto;font-weight:600;white-space:nowrap">Отменить</button>
+  <div id="ti" style="width:32px;height:32px;border-radius:50%;background:#F3EAD2;color:#E0A92A;display:flex;align-items:center;justify-content:center;flex:none">★</div><span id="tt" style="flex:1"></span><button id="tu" class="lnk" style="display:none;pointer-events:auto;font-weight:600;white-space:nowrap">Отменить</button>
 </div>
 
 <div id="lov">
@@ -172,18 +300,22 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
   <button class="btn" id="lok" style="margin-top:26px;background:#E0A92A;color:#fff;width:auto;padding:12px 40px">Продолжить</button>
 </div>
 <div id="ov">
-  <div class="cap" id="o0" style="letter-spacing:2px;opacity:0;transition:all .5s">НОВОЕ ЗВАНИЕ</div>
-  <svg id="osvg" width="160" height="160" viewBox="0 0 160 160" style="margin:18px 0;transform:scale(.4);opacity:0;transition:transform .7s cubic-bezier(.3,1.6,.5,1),opacity .4s">
-    <circle cx="80" cy="80" r="68" fill="none" stroke="#F1E4FA" stroke-width="14"/>
-    <circle id="oring" cx="80" cy="80" r="68" fill="none" stroke="#AF52DE" style="transition:stroke-dashoffset 1.1s ease-out" stroke-width="14" stroke-linecap="round" stroke-dasharray="427.3" stroke-dashoffset="427.3" transform="rotate(-90 80 80)"/>
-    <text id="onum" x="80" y="97" text-anchor="middle" style="font-size:48px;font-weight:600;fill:#AF52DE">5</text>
-  </svg>
-  <div id="oname" style="font-size:30px;font-weight:700;opacity:0;transform:translateY(12px);transition:all .5s .2s"></div>
-  <div id="orew" style="margin-top:16px;background:#F2F2F7;border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(12px);transition:all .5s .4s">
-    <span style="font-size:22px">🎁</span>
-    <div style="text-align:left"><div class="cap">Награда открыта</div><div id="orn" style="font-size:17px;font-weight:600"></div></div>
+  <div class="rays"></div>
+  <canvas id="ocv"></canvas>
+  <div class="lvc">
+    <div class="lvt">НОВОЕ ЗВАНИЕ</div>
+    <div class="medal">
+      <svg viewBox="0 0 172 172"><circle cx="86" cy="86" r="80" fill="none" stroke="#ffffff1a" stroke-width="6"/><circle class="rg" cx="86" cy="86" r="80" fill="none" stroke="#F3D27A" stroke-width="6" stroke-linecap="round" transform="rotate(-90 86 86)"/></svg>
+      <div class="old" id="oold">1</div>
+      <div class="core"><span id="onum">2</span></div>
+      <svg class="crown" viewBox="0 0 100 70"><path d="M14 52 L8 14 L30 30 L50 4 L70 30 L92 14 L86 52 Z" fill="#F3D27A" stroke="#9B7420" stroke-width="3" stroke-linejoin="round"/><rect x="14" y="56" width="72" height="10" rx="4" fill="#F3D27A" stroke="#9B7420" stroke-width="3"/></svg>
+    </div>
+    <div class="lvn" id="oname"></div>
+    <div class="lvx" id="oxp"></div>
+    <div class="prize" id="orew"><div class="pk">НАГРАДА ОТКРЫТА</div><div class="pv">🎁 <span id="orn"></span></div></div>
+    <button id="ook">Забрать награду</button>
+    <div class="lvs" id="onext"></div>
   </div>
-  <button class="btn" id="ook" style="margin-top:22px;background:#AF52DE;color:#fff;width:auto;padding:12px 40px;opacity:0;transition:opacity .4s .7s">Продолжить</button>
 </div>
 
 <script>
@@ -239,13 +371,14 @@ function render() {
   try { localStorage.setItem('gameState', JSON.stringify(S)); } catch (e) {}
   hideSplash();
   const r = S.rank;
-  $('date').textContent = S.date;
+  $('date').textContent = String(S.season || '').toUpperCase() + ' · ' + String(S.date || '').toUpperCase(); fitHello();
+  weekChart(); const nr = S.rewards.find(x => !x.unlocked && x.reward && x.reward !== '?'); $('nrw').textContent = '🎁 ' + (r.nextReward && r.nextReward !== '?' ? r.nextReward : nr ? nr.reward : 'награда не задана'); $('nrw').style.display = r.to ? '' : 'none';
   $('season').textContent = S.season;
-  $('rn').textContent = r.n; $('rt').textContent = r.name; $('xp').textContent = f(S.xp) + ' XP';
+  $('rn').textContent = r.n; $('rt').textContent = r.name; $('rsub').textContent = 'звание ' + r.n + ' из 10'; $('xp').innerHTML = f(S.xp) + '<small>XP</small>';
   if (r.to) {
-    $('rs').textContent = 'ещё ' + f(r.to - S.xp) + ' до «' + r.nextName + '»';
+    $('rs').innerHTML = '<span>до «<b>' + esc(r.nextName) + '</b>»</span><span>ещё <b>' + f(r.to - S.xp) + '</b> XP</span>'; seg10((S.xp - r.from) / (r.to - r.from));
     $('ring').style.strokeDashoffset = 251.3 * (1 - Math.max(0, Math.min(1, (S.xp - r.from) / (r.to - r.from))));
-  } else { $('rs').textContent = 'Высшее звание'; $('ring').style.strokeDashoffset = 0; }
+  } else { $('rs').innerHTML = '<span>Высшее звание</span>'; seg10(1); }
 
   const w = S.week, ok = w.tasks >= w.norm, d = S.debt;
   const debtLine = {norm:['в норме', '#34C759', '+' + d.forecast], down:['снизился, выше нормы', '#FF9500', '0'], up:['не снизился', '#FF3B30', '−' + Math.abs(d.forecast)], first:['первый замер', '#6E6E73', '0']}[d.status];
@@ -260,7 +393,7 @@ function render() {
   $('b1').style.width = (100 - S.vac.pct) + '%';
 
   const hi = d.now > d.norm, t2 = $('t2');
-  t2.style.background = hi ? '#FF3B30' : '#34C759'; t2.style.color = '#fff';
+  t2.style.background = hi ? 'linear-gradient(160deg,#E3554C,#C23A33)' : 'linear-gradient(160deg,#25A06F,#167A52)'; t2.style.color = '#fff';
   ['l2', 's2'].forEach(i => $(i).style.color = 'rgba(255,255,255,.92)');
   $('tr2').style.background = 'rgba(255,255,255,.35)';
   $('b2').style.width = Math.min(100, d.norm / Math.max(d.now, 1) * 100) + '%';
@@ -269,6 +402,17 @@ function render() {
 
   list(); rewards();
 }
+function seg10(q) {
+  const p = Math.max(0, Math.min(1, q || 0)) * 10, el = $('seg10');
+  if (el.children.length !== 10) el.innerHTML = '<i><b style="width:0"></b></i>'.repeat(10);
+  [...el.children].forEach((x, k) => x.firstChild.style.width = Math.max(0, Math.min(1, p - k)) * 100 + '%');
+}
+function fitHello() {
+  const h = $('hello'); if (!h) return; h.style.display = ''; let fs = 26; h.style.fontSize = fs + 'px';
+  while (h.scrollWidth > h.clientWidth + 1 && fs > 17) { fs--; h.style.fontSize = fs + 'px'; }
+  if (h.scrollWidth > h.clientWidth + 1) h.style.display = 'none';
+}
+addEventListener('resize', () => { try { fitHello(); } catch (e) {} });
 function row(a, b) { return '<div class="r"><div style="flex:1">' + a + '</div>' + b + '</div>'; }
 
 const pad = n => String(n).padStart(2, '0');
@@ -292,22 +436,22 @@ function tVisible(t) {
 }
 function dateEditor(t) {
   const box = document.createElement('div');
-  box.innerHTML = '<div style="font-weight:600;margin-bottom:8px">Когда?</div><div class="seg"><button>Без даты</button><button>К сроку</button><button>Встреча</button></div>' +
-    '<div class="dt"><input type="date" style="flex:1"><input type="time" style="flex:1"></div><div class="cap" style="color:#FF3B30;margin-top:6px;display:none"></div>' +
-    '<div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" style="background:#007AFF;color:#fff;font-size:15px">Сохранить</button></div>';
-  const bs = [...box.querySelectorAll('.seg button')], dt = box.querySelector('.dt'), [di, ti] = box.querySelectorAll('input'), er = box.querySelector('.cap'), [cn, sv] = box.querySelectorAll('.btn');
-  let ty = t.dtype || 'Без даты'; di.value = t.date || ''; ti.value = t.time || '';
-  const upd = () => { bs.forEach(b => b.classList.toggle('on', b.textContent === ty)); dt.classList.toggle('on', ty !== 'Без даты'); ti.style.display = ty === 'Встреча' ? '' : 'none'; };
-  bs.forEach(b => b.onclick = e => { e.stopPropagation(); ty = b.textContent; er.style.display = 'none'; upd(); });
+  box.innerHTML = '<div style="font-weight:600;margin-bottom:8px">Когда?</div>' +
+    '<div class="dtl"><div><label>Дата</label><input type="date"></div><div><label>Время</label><input type="time"></div></div>' +
+    '<div class="cap" style="margin-top:6px">пусто — без даты · дата — срок · дата и время — встреча</div><div class="cap" style="color:#D6453D;margin-top:6px;display:none"></div>' +
+    '<div style="display:flex;gap:8px;margin-top:10px"><button class="btn" style="background:#E9ECE6;color:#14211B;font-size:15px">Очистить</button><button class="btn" style="background:#E9ECE6;color:#14211B;font-size:15px">Отмена</button><button class="btn" style="background:#0F3B2C;color:#fff;font-size:15px">Сохранить</button></div>';
+  const [di, ti] = box.querySelectorAll('input'), er = box.querySelectorAll('.cap')[1], [cl, cn, sv] = box.querySelectorAll('.btn');
+  di.value = t.date || ''; ti.value = t.time || '';
   [di, ti, box].forEach(x => x.onclick = e => e.stopPropagation());
+  cl.onclick = e => { e.stopPropagation(); di.value = ''; ti.value = ''; er.style.display = 'none'; };
   cn.onclick = e => { e.stopPropagation(); dateOpen = null; list(); };
   sv.onclick = e => { e.stopPropagation();
-    if (ty !== 'Без даты' && !di.value) { er.textContent = 'Выбери дату'; er.style.display = 'block'; return; }
-    if (ty === 'Встреча' && !ti.value) { er.textContent = 'Выбери время'; er.style.display = 'block'; return; }
-    const o = { dtype: ty, date: ty === 'Без даты' ? '' : di.value, time: ty === 'Встреча' ? ti.value : '' };
+    if (ti.value && !di.value) { er.textContent = 'Для встречи выбери ещё и дату'; er.style.display = 'block'; return; }
+    const ty = !di.value ? 'Без даты' : ti.value ? 'Встреча' : 'К сроку';
+    const o = { dtype: ty, date: di.value, time: ty === 'Встреча' ? ti.value : '' };
     Object.assign(t, o); dateOpen = null; list();
     call('apiSetDate', [t.id, o], res => { S = res.state; render(); toast(o.date ? 'Дата сохранена' : 'Дата убрана', '📅'); }); };
-  upd(); return box;
+  return box;
 }
 // Порядок: активные → по дате (без даты внизу) → внутри одной даты по убыванию XP → по времени
 function byOrder(a, b) {
@@ -324,7 +468,7 @@ function list() {
   const V = S.tasks.filter(t => (filt === 'Все' || t.goal === filt) && tVisible(t))
     .sort(byOrder);
   V.forEach(t => {
-    const w = document.createElement('div');
+    const w = document.createElement('div'); w.className = 'tw' + (t.legend ? ' legw' : ''); w.style.setProperty('--c', t.legend ? '#D4A646' : t.goal === 'Бизнес' ? '#1F8A63' : '#6C5CE7');
     const r = document.createElement('div'); r.className = 'r' + (t.legend ? ' leg' : ''); r.style.cursor = 'pointer';
     if (t.locked || t.pending) r.style.opacity = .55;
     const b = document.createElement('button'); b.className = 'ck' + (t.pending ? ' on' : '') + (t.locked && !t.pending ? ' lock' : '');
@@ -339,13 +483,15 @@ function list() {
     if (t.rep) m.push('🔁 ' + t.rep.toLowerCase());
     if (t.locked && !t.pending) m.push('вернётся ' + t.back);
     if (t.pending) m.push('выполнено, ждёт оценки');
-    const md = document.createElement('div'); md.className = 'cap'; md.innerHTML = m.join(' · '); s.append(md);
+    const md = document.createElement('div'); md.className = 'mt'; md.innerHTML = m.map(x => '<span class="mc' + (/просрочено/.test(x) ? ' late' : /FF9500/.test(x) ? ' today' : '') + '">' + x.replace(/<span style="color:#[0-9A-F]+">|<\/span>/g, '') + '</span>').join(''); s.append(md);
     const p = document.createElement('span'); p.className = 'pill';
     if (busy[t.id] === 'eval' || (!t.xp && !t.pending)) { p.style.cssText = 'background:#F2F2F7;color:#6E6E73'; p.innerHTML = '<span class="spin">◌</span> ' + (t.legendAsk ? 'проверка ⭐' : 'оценка'); }
     else if (!t.xp) { p.style.cssText = 'background:#F2F2F7;color:#6E6E73'; p.textContent = 'на оценке'; }
-    else if (t.legend) { p.style.cssText = 'background:#FCEBC0;color:#9A6B00'; p.textContent = '⭐ +' + t.xp; }
-    else { p.style.cssText = 'background:#F1E4FA;color:#8E3BB8'; p.textContent = '+' + t.xp; }
-    r.append(b, s, p);
+    else if (t.legend) { p.style.cssText = 'background:#0F3B2C;color:#F3D27A;font-weight:800'; p.textContent = '👑 +' + t.xp; }
+    else { p.style.cssText = 'background:#E6F3EC;color:#185C44;font-weight:800'; p.textContent = '+' + t.xp; }
+    const xw = document.createElement('div'); xw.className = 'xpw'; xw.append(p);
+    if (t.xp && t.s) { const dt5 = (n, c) => '<div class="dots ' + c + '">' + [1, 2, 3, 4, 5].map(k => '<i class="' + (k <= n ? 'on' : '') + '"></i>').join('') + '</div>'; xw.insertAdjacentHTML('beforeend', dt5(t.s, '') + dt5(t.i, 'im')); }
+    r.append(b, s, xw);
 
     const det = document.createElement('div'); det.className = 'det';
     const inner = document.createElement('div'); inner.style.cssText = 'padding:10px 14px 14px 52px;font-size:14px';
@@ -355,9 +501,9 @@ function list() {
     if (t.details) inner.insertAdjacentHTML('afterbegin', '<div style="font-size:14px;color:#3A3A3C;margin-bottom:8px;white-space:pre-wrap">📝 ' + esc(t.details) + '</div>');
     const act = document.createElement('div');
     if (disputeOpen === t.id) {
-      act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Почему оценка несправедлива?</div><textarea id="ta" rows="3" placeholder="Конкретная причина: что делает задачу сложнее или важнее"></textarea><div id="tae" style="font-size:13px;color:#FF3B30;margin-top:4px;display:none">Напиши причину</div><div class="cap" style="margin:6px 0 10px">Оспорить можно один раз. Оценка может только вырасти или остаться.</div><div style="display:flex;gap:8px"><button class="btn" id="dcn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="dsd" style="background:#007AFF;color:#fff;font-size:15px">Отправить</button></div>';
+      act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Почему оценка несправедлива?</div><textarea id="ta" rows="3" placeholder="Конкретная причина: что делает задачу сложнее или важнее"></textarea><div id="tae" style="font-size:13px;color:#FF3B30;margin-top:4px;display:none">Напиши причину</div><div class="cap" style="margin:6px 0 10px">Оспорить можно один раз. Оценка может только вырасти или остаться.</div><div style="display:flex;gap:8px"><button class="btn" id="dcn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="dsd" style="background:#0F3B2C;color:#fff;font-size:15px">Отправить</button></div>';
     } else if (editOpen === t.id) {
-      act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Изменить задачу</div><textarea id="en" rows="2"></textarea><textarea id="ed" rows="3" style="margin-top:8px;font-size:15px" placeholder="Подробнее (видит арбитр)"></textarea><div class="cap" style="margin:6px 0 10px">После правки арбитр оценит задачу заново.</div><div style="display:flex;gap:8px"><button class="btn" id="ecn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="esv" style="background:#007AFF;color:#fff;font-size:15px">Сохранить</button></div>';
+      act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Изменить задачу</div><textarea id="en" rows="2"></textarea><textarea id="ed" rows="3" style="margin-top:8px;font-size:15px" placeholder="Подробнее (видит арбитр)"></textarea><div class="cap" style="margin:6px 0 10px">После правки арбитр оценит задачу заново.</div><div style="display:flex;gap:8px"><button class="btn" id="ecn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="esv" style="background:#0F3B2C;color:#fff;font-size:15px">Сохранить</button></div>';
     } else if (dateOpen === t.id) {
       act.append(dateEditor(t));
     } else if (whoOpen === t.id) {
@@ -377,12 +523,12 @@ function list() {
       act.innerHTML = '<div class="cap"><span class="spin">◌</span> Арбитр пересматривает…</div>';
     } else {
       const bar = document.createElement('div'); bar.style.cssText = 'display:flex;gap:18px;flex-wrap:wrap';
-      if (t.xp && !t.disputed) bar.append(btn('⚖️ Оспорить', '#007AFF', () => { disputeOpen = t.id; list(); }));
+      if (t.xp && !t.disputed) bar.append(btn('⚖️ Оспорить', '#1C1C1E', () => { disputeOpen = t.id; list(); }));
       if (t.disputed) { const c = document.createElement('span'); c.className = 'cap'; c.textContent = '⚖️ оспорено · оценка окончательная'; bar.append(c); }
-      if (!t.pending) bar.append(btn('✏️ Изменить', '#007AFF', () => { editOpen = t.id; list(); }));
-      if (!t.pending) bar.append(btn('📅 ' + (t.date ? 'Дата' : 'Добавить дату'), '#007AFF', () => { dateOpen = t.id; list(); }));
-      if (!t.pending) bar.append(btn('👤 ' + (t.who === 'Я' ? 'Делегировать' : 'Исполнитель'), '#007AFF', () => { whoOpen = t.id; list(); }));
-      if (t.who !== 'Я') bar.append(btn('📤 Переслать: ' + t.who, '#007AFF', () => share(t)));
+      if (!t.pending) bar.append(btn('✏️ Изменить', '#1C1C1E', () => { editOpen = t.id; list(); }));
+      if (!t.pending) bar.append(btn('📅 ' + (t.date ? 'Дата' : 'Добавить дату'), '#1C1C1E', () => { dateOpen = t.id; list(); }));
+      if (!t.pending) bar.append(btn('👤 ' + (t.who === 'Я' ? 'Делегировать' : 'Исполнитель'), '#1C1C1E', () => { whoOpen = t.id; list(); }));
+      if (t.who !== 'Я') bar.append(btn('📤 Переслать: ' + t.who, '#1C1C1E', () => share(t)));
       bar.append(btn(delAsk === t.id ? 'Точно удалить?' : '🗑 Удалить', '#FF3B30', () => {
         if (delAsk !== t.id) { delAsk = t.id; list(); return; }
         delAsk = null; openId = null; S.tasks = S.tasks.filter(x => x.id !== t.id); list();
@@ -421,17 +567,32 @@ function list() {
 }
 function btn(txt, col, fn) { const b = document.createElement('button'); b.className = 'lnk'; b.style.color = col; b.textContent = txt; b.onclick = e => { e.stopPropagation(); fn(); }; return b; }
 
+function weekChart() {
+  const w = S.week || {}, d = w.days || [0, 0, 0, 0, 0, 0, 0], td = w.today === undefined ? -1 : w.today;
+  const mx = Math.max(300, ...d), N = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  $('wkb').innerHTML = d.map((x, k) => '<div class="wb ' + (k === td ? 'td' : x ? 'on' : '') + '"><span style="font-size:10px;font-weight:600;color:' + (x ? '#14211B' : '#B5BCB6') + '">' + (x || '') + '</span><i style="height:' + Math.max(6, x / mx * 62) + 'px"></i><span class="cap" style="font-size:11px' + (k === td ? ';color:#14211B;font-weight:700' : '') + '">' + N[k] + '</span></div>').join('');
+  const ok = (w.tasks || 0) >= (w.norm || 200);
+  $('wkl').innerHTML = '<b style="color:#14211B">' + f(w.tasks || 0) + '</b> / ' + (w.norm || 200) + ' норма ' + (ok ? '✅' : w.first ? '· 1-я неделя' : '');
+}
+
 function rewards() {
-  $('rw').innerHTML = S.rewards.map(r => '<div class="r"><span style="font-size:18px">' + (r.unlocked ? '🔓' : '🔒') + '</span><div style="flex:1"><div>' + esc(r.reward) + '</div><div class="cap">' + r.n + '. ' + esc(r.name) + '</div></div><span class="cap" style="' + (r.unlocked ? 'color:#34C759' : '') + '">' + (r.unlocked ? 'открыто' : f(r.need) + ' XP') + '</span></div>').join('');
+  $('rw').innerHTML = S.rewards.map((r, k) => '<div class="rwc' + (r.unlocked ? ' on' : k === S.rewards.findIndex(x => !x.unlocked) ? ' next' : '') + '"><div style="font-size:22px">' + (r.unlocked ? '🔓' : '🔒') + '</div><div style="font-weight:700;font-size:14px;margin-top:8px;line-height:1.25">' + esc(r.reward) + '</div><div class="cap" style="margin-top:4px">' + (r.unlocked ? 'открыто' : r.n + '. ' + esc(r.name)) + '</div>' + (r.unlocked ? '' : '<div class="cap" style="margin-top:2px;color:#9B7420;font-weight:600">ещё ' + f(r.need) + ' XP</div>') + '</div>').join('');
+}
+
+function fxp(txt, el) {
+  const rc = el.getBoundingClientRect(), d = document.createElement('div');
+  d.className = 'fxp'; d.textContent = txt; d.style.left = (rc.right - 90) + 'px'; d.style.top = (rc.top - 4) + 'px';
+  document.body.append(d); setTimeout(() => d.remove(), 1200);
 }
 
 function done(t, b, r) {
+  if (t.xp) fxp('+' + t.xp + ' XP', r);
   busy[t.id] = 'done'; b.classList.add('on'); b.textContent = '✓';
   setTimeout(() => r.style.opacity = 0, 250);
   call('apiDone', [t.id], res => {
     delete busy[t.id]; openId = null;
     const go = () => {
-      if (res.rankUp) { $('ring').style.strokeDashoffset = 0; setTimeout(() => { S = res.state; levelUp(res.rankUp); }, 850); }
+      if (res.rankUp) { seg10(1); setTimeout(() => { S = res.state; levelUp(res.rankUp); }, 850); }
       else { S = res.state; render(); if (!t.legend) toast(res.msg || 'Готово', t.xp ? '★' : '⏳', () => call('apiUndo', [t.id], r2 => { S = r2.state; render(); toast('Отменено', '↩️'); })); }
     };
     if (t.legend && t.xp) legendFx(t.name, go); else go();
@@ -440,7 +601,7 @@ function done(t, b, r) {
 
 function legendFx(name, then) {
   $('lname').textContent = name; $('lov').classList.add('on');
-  setTimeout(() => confetti(['#E0A92A', '#F5C542', '#C9971C', '#FFE08A', '#AF52DE']), 500);
+  setTimeout(() => confetti(['#E0A92A', '#F3D27A', '#C9971C', '#FFE08A', '#E0A92A']), 500);
   $('lok').onclick = () => { $('lov').classList.remove('on'); setTimeout(then, 350); };
 }
 
@@ -457,44 +618,57 @@ function toast(m, ic, undo) {
 }
 
 function confetti(c) {
-  const cols = c || ['#AF52DE', '#007AFF', '#34C759', '#FF9500', '#FF2D55'];
+  const cols = c || ['#E0A92A', '#1C1C1E', '#34C759', '#FF9500', '#FF2D55'];
   for (let i = 0; i < 70; i++) {
     const d = document.createElement('div'); d.className = 'cf'; d.style.left = Math.random() * 100 + '%'; d.style.background = cols[i % 5]; document.body.append(d);
     d.animate([{ transform: 'translate(0,0) rotate(0)' }, { transform: 'translate(' + (Math.random() - .5) * 160 + 'px,' + (window.innerHeight + 40) + 'px) rotate(' + Math.random() * 720 + 'deg)' }],
       { duration: 1800 + Math.random() * 1400, delay: Math.random() * 400, easing: 'cubic-bezier(.2,.6,.4,1)', fill: 'forwards' }).onfinish = () => d.remove();
   }
 }
+let lvRaf = 0;
 function levelUp(u) {
-  $('onum').textContent = u.n; $('oname').textContent = u.name;
-  $('orew').style.display = u.reward ? 'flex' : 'none'; $('orn').textContent = u.reward || '';
-  $('ov').classList.add('on');
-  requestAnimationFrame(() => {
-    $('o0').style.opacity = 1; $('osvg').style.opacity = 1; $('osvg').style.transform = 'scale(1)';
-    setTimeout(() => $('oring').style.strokeDashoffset = 0, 250);
-    ['oname', 'orew'].forEach(i => { $(i).style.opacity = 1; $(i).style.transform = 'none'; }); $('ook').style.opacity = 1;
-  });
-  setTimeout(confetti, 600);
+  const ov = $('ov');
+  $('onum').textContent = u.n; $('oold').textContent = Math.max(1, u.n - 1); $('oname').textContent = u.name;
+  const rk = (S && S.rank) || {};
+  $('oxp').textContent = f((S && S.xp) || 0) + ' XP · ' + ((S && S.season) || '');
+  $('orew').style.display = u.reward ? '' : 'none'; $('orn').textContent = u.reward || '';
+  $('onext').textContent = rk.to && rk.n === u.n ? 'следующее: ' + rk.nextName + ' · ' + f(rk.to) + ' XP' : '';
+  ov.classList.remove('on'); void ov.offsetWidth;
+  ov.querySelectorAll('*').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
+  ov.classList.add('on'); coins();
 }
-$('ook').onclick = () => {
-  $('ov').classList.remove('on');
-  setTimeout(() => {
-    $('oring').style.strokeDashoffset = 427.3; $('osvg').style.transform = 'scale(.4)'; $('osvg').style.opacity = 0;
-    ['o0', 'oname', 'orew'].forEach(i => $(i).style.opacity = 0); ['oname', 'orew'].forEach(i => $(i).style.transform = 'translateY(12px)'); $('ook').style.opacity = 0;
-    render();
-  }, 400);
-};
+function coins() {
+  const cv = $('ocv'), x = cv.getContext('2d'), dpr = devicePixelRatio || 1, W = innerWidth, H = innerHeight, cx = W / 2, cy = H * .42;
+  cv.width = W * dpr; cv.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  let P = [], fired = false; const t0 = performance.now(); cancelAnimationFrame(lvRaf);
+  const burst = n => { for (let k = 0; k < n; k++) { const a = Math.random() * Math.PI * 2, v = 4 + Math.random() * 7; P.push({ x: cx, y: cy, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 4, r: 5 + Math.random() * 6, s: Math.random() * 3, ds: .1 + Math.random() * .2, c: Math.random() < .75 ? '#F3D27A' : '#FFFFFF' }); } };
+  (function loop(now) {
+    const e = now - t0; if (!fired && e > 1300) { burst(90); fired = true; }
+    if (e > 1500 && e < 4500 && Math.random() < .35) P.push({ x: Math.random() * W, y: -12, vx: (Math.random() - .5) * 1.2, vy: 1.5 + Math.random() * 2, r: 4 + Math.random() * 5, s: 0, ds: .08 + Math.random() * .15, c: '#F3D27A' });
+    x.clearRect(0, 0, W, H);
+    P.forEach(p => { p.vy += .18; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.s += p.ds; const w = Math.abs(Math.cos(p.s)) * p.r;
+      x.fillStyle = p.c; x.beginPath(); x.ellipse(p.x, p.y, Math.max(.8, w), p.r, 0, 0, Math.PI * 2); x.fill();
+      if (p.c !== '#FFFFFF') { x.fillStyle = '#9B742066'; x.beginPath(); x.ellipse(p.x, p.y, Math.max(.4, w * .55), p.r * .55, 0, 0, Math.PI * 2); x.fill(); } });
+    P = P.filter(p => p.y < H + 20);
+    if ((e < 7000 || P.length) && $('ov').classList.contains('on')) lvRaf = requestAnimationFrame(loop); else x.clearRect(0, 0, W, H);
+  })(t0);
+}
+$('ook').onclick = () => { $('ov').classList.remove('on'); cancelAnimationFrame(lvRaf); render(); };
 
 function seg(id, cb) { const b = [...$(id).children]; b.forEach(x => x.onclick = () => { b.forEach(y => y.classList.remove('on')); x.classList.add('on'); cb && cb(x.textContent); }); return () => $(id).querySelector('.on').textContent; }
 const who = seg('who'), goal = seg('goal'), rep = seg('rep');
 seg('flt', v => { filt = v; openId = null; if (S) list(); });
 
 let sh = 0;
-$('nb').onclick = () => { sh ^= 1; $('sheet').style.maxHeight = sh ? '900px' : '0'; $('nb').textContent = sh ? 'Закрыть' : '＋ Новая'; if (!sh && document.activeElement) document.activeElement.blur(); };
+function setSheet(on) { sh = on ? 1 : 0; $('sheet').classList.toggle('on', !!on); $('shb').classList.toggle('on', !!on); if (!on && document.activeElement) document.activeElement.blur(); }
+$('nb').onclick = () => setSheet(!sh);
+$('fab').onclick = () => setSheet(true);
+$('shb').onclick = () => setSheet(false);
 $('add').onclick = () => {
   const v = $('inp').value.trim(); if (!v) { $('err').style.display = 'block'; return; }
-  const wt = when(), ae = $('aerr');
-  if (wt !== 'Без даты' && !$('adate').value) { ae.textContent = 'Выбери дату'; ae.style.display = 'block'; return; }
-  if (wt === 'Встреча' && !$('atime').value) { ae.textContent = 'Выбери время'; ae.style.display = 'block'; return; }
+  const ae = $('aerr'), ad = $('adate').value, at = $('atime').value;
+  if (at && !ad) { ae.textContent = 'Для встречи выбери ещё и дату'; ae.style.display = 'block'; return; }
+  const wt = !ad ? 'Без даты' : at ? 'Встреча' : 'К сроку';
   const o = { name: v, who: who(), goal: goal(), rep: rep() === 'Нет' ? '' : rep(),
     dtype: wt, date: wt === 'Без даты' ? '' : $('adate').value, time: wt === 'Встреча' ? $('atime').value : '',
     legend: legOn, legendWhy: legOn ? $('lgt').value.trim() : '', details: $('adet').value.trim() };
@@ -502,7 +676,7 @@ $('add').onclick = () => {
   S.tasks.unshift({ id: tmp, name: o.name, who: o.who, goal: o.goal, rep: o.rep, dtype: o.dtype, date: o.date, time: o.time, legendAsk: o.legend, xp: 0, s: 0, i: 0, why: '', disputed: false, pending: false, locked: false });
   busy[tmp] = 'eval';
   legOn = false; $('lg').classList.remove('on'); $('lgw').style.display = 'none'; $('lgt').value = ''; $('adet').value = '';
-  $('inp').value = ''; grow(); $('adate').value = ''; $('atime').value = ''; sh = 0; $('sheet').style.maxHeight = '0'; $('nb').textContent = '＋ Новая'; list();
+  $('inp').value = ''; grow(); $('adate').value = ''; $('atime').value = ''; setSheet(false); list();
   if (o.who !== 'Я') share({ name: o.name });
   call('apiAdd', [o], res => { delete busy[tmp]; S = res.state; render();
     const t = S.tasks.find(x => x.name === o.name && x.xp);
@@ -514,7 +688,8 @@ function grow() { const i = $('inp'); i.style.height = 'auto'; i.style.height = 
 $('inp').addEventListener('input', grow);
 let legOn = false;
 $('lg').onclick = () => { legOn = !legOn; $('lg').classList.toggle('on', legOn); $('lgw').style.display = legOn ? 'block' : 'none'; };
-const when = seg('when', v => { $('adt').classList.toggle('on', v !== 'Без даты'); $('atime').style.display = v === 'Встреча' ? '' : 'none'; $('aerr').style.display = 'none'; });
+$('aclr').onclick = () => { $('adate').value = ''; $('atime').value = ''; $('aerr').style.display = 'none'; };
+['adate', 'atime'].forEach(i => $(i).oninput = () => $('aerr').style.display = 'none');
 seg('tf', v => { tfilt = v; openId = null; if (S) list(); });
 $('rk').onclick = () => { open ^= 1; $('bd').style.maxHeight = open ? '360px' : '0'; $('chev').style.transform = open ? 'rotate(180deg)' : 'none'; };
 $('t1').onclick = () => { m1 ^= 1; render(); };
