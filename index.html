@@ -131,6 +131,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
     <div class="g" style="padding:14px;margin-bottom:10px">
       <textarea id="inp" rows="1" placeholder="Что нужно сделать" style="overflow:hidden;line-height:1.35"></textarea>
       <div id="err" style="font-size:13px;color:#FF3B30;margin-top:6px;display:none">Напиши задачу</div>
+      <textarea id="adet" rows="2" style="margin-top:8px;font-size:15px" placeholder="Подробнее (необязательно, видит арбитр): что стоит за задачей, масштаб, зачем"></textarea>
       <div class="cap" style="margin:12px 0 6px">Кто делает</div>
       <div class="seg" id="who"><button class="on">Я</button><button>Лариса</button><button>Гриша</button><button>Инженер</button><button>Тётя</button></div>
       <div class="cap" style="margin:12px 0 6px">Цель</div>
@@ -160,7 +161,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;min-he
 </div>
 
 <div id="toast" style="position:fixed;left:14px;right:14px;bottom:20px;max-width:492px;margin:0 auto;background:#fff;border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(20px);transition:all .3s;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.12);z-index:4;pointer-events:none">
-  <div id="ti" style="width:32px;height:32px;border-radius:50%;background:#F1E4FA;color:#AF52DE;display:flex;align-items:center;justify-content:center;flex:none">★</div><span id="tt"></span>
+  <div id="ti" style="width:32px;height:32px;border-radius:50%;background:#F1E4FA;color:#AF52DE;display:flex;align-items:center;justify-content:center;flex:none">★</div><span id="tt" style="flex:1"></span><button id="tu" class="lnk" style="display:none;pointer-events:auto;font-weight:600;white-space:nowrap">Отменить</button>
 </div>
 
 <div id="lov">
@@ -193,7 +194,7 @@ let API_URL = '', K = '';
   const m = u.match(/^(https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec)\?k=(\w+)$/);
   if (m) { API_URL = m[1]; K = m[2]; }
 })();
-let S = null, open = 0, m1 = 0, m2 = 0, filt = 'Все', openId = null, busy = {}, delAsk = null, disputeOpen = null, whoOpen = null, dateOpen = null, tfilt = 'Все';
+let S = null, open = 0, m1 = 0, m2 = 0, filt = 'Все', openId = null, busy = {}, delAsk = null, disputeOpen = null, whoOpen = null, dateOpen = null, editOpen = null, tfilt = 'Все';
 const $ = id => document.getElementById(id);
 const f = n => Math.round(n).toLocaleString('ru-RU');
 const mln = n => (n / 1e6).toFixed(2).replace('.', ',') + ' млн';
@@ -349,11 +350,14 @@ function list() {
     const det = document.createElement('div'); det.className = 'det';
     const inner = document.createElement('div'); inner.style.cssText = 'padding:10px 14px 14px 52px;font-size:14px';
     if (t.xp) {
-      inner.innerHTML = '<div style="font-weight:600">⚖️ ' + t.s + ' × ' + t.i + ' × 10 = ' + t.xp + ' XP</div><div class="cap" style="margin:2px 0 10px">' + esc(t.why) + '</div>';
+      inner.innerHTML = '<div style="font-weight:600">⚖️ сложность ' + t.s + ' × влияние ' + t.i + ' → ' + t.xp + ' XP</div><div class="cap" style="margin:2px 0 10px">' + esc(t.why) + '</div>';
     } else inner.innerHTML = '<div class="cap" style="margin-bottom:10px">Арбитр ещё оценивает. Выполнять уже можно.</div>';
+    if (t.details) inner.insertAdjacentHTML('afterbegin', '<div style="font-size:14px;color:#3A3A3C;margin-bottom:8px;white-space:pre-wrap">📝 ' + esc(t.details) + '</div>');
     const act = document.createElement('div');
     if (disputeOpen === t.id) {
       act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Почему оценка несправедлива?</div><textarea id="ta" rows="3" placeholder="Конкретная причина: что делает задачу сложнее или важнее"></textarea><div id="tae" style="font-size:13px;color:#FF3B30;margin-top:4px;display:none">Напиши причину</div><div class="cap" style="margin:6px 0 10px">Оспорить можно один раз. Оценка может только вырасти или остаться.</div><div style="display:flex;gap:8px"><button class="btn" id="dcn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="dsd" style="background:#007AFF;color:#fff;font-size:15px">Отправить</button></div>';
+    } else if (editOpen === t.id) {
+      act.innerHTML = '<div style="font-weight:600;margin-bottom:6px">Изменить задачу</div><textarea id="en" rows="2"></textarea><textarea id="ed" rows="3" style="margin-top:8px;font-size:15px" placeholder="Подробнее (видит арбитр)"></textarea><div class="cap" style="margin:6px 0 10px">После правки арбитр оценит задачу заново.</div><div style="display:flex;gap:8px"><button class="btn" id="ecn" style="background:#E9E9EE;color:#000;font-size:15px">Отмена</button><button class="btn" id="esv" style="background:#007AFF;color:#fff;font-size:15px">Сохранить</button></div>';
     } else if (dateOpen === t.id) {
       act.append(dateEditor(t));
     } else if (whoOpen === t.id) {
@@ -375,6 +379,7 @@ function list() {
       const bar = document.createElement('div'); bar.style.cssText = 'display:flex;gap:18px;flex-wrap:wrap';
       if (t.xp && !t.disputed) bar.append(btn('⚖️ Оспорить', '#007AFF', () => { disputeOpen = t.id; list(); }));
       if (t.disputed) { const c = document.createElement('span'); c.className = 'cap'; c.textContent = '⚖️ оспорено · оценка окончательная'; bar.append(c); }
+      if (!t.pending) bar.append(btn('✏️ Изменить', '#007AFF', () => { editOpen = t.id; list(); }));
       if (!t.pending) bar.append(btn('📅 ' + (t.date ? 'Дата' : 'Добавить дату'), '#007AFF', () => { dateOpen = t.id; list(); }));
       if (!t.pending) bar.append(btn('👤 ' + (t.who === 'Я' ? 'Делегировать' : 'Исполнитель'), '#007AFF', () => { whoOpen = t.id; list(); }));
       if (t.who !== 'Я') bar.append(btn('📤 Переслать: ' + t.who, '#007AFF', () => share(t)));
@@ -386,9 +391,21 @@ function list() {
       act.append(bar);
     }
     inner.append(act); det.append(inner);
-    r.onclick = () => { openId = openId === t.id ? null : t.id; delAsk = null; disputeOpen = null; whoOpen = null; dateOpen = null; list(); };
+    r.onclick = () => { openId = openId === t.id ? null : t.id; delAsk = null; disputeOpen = null; whoOpen = null; dateOpen = null; editOpen = null; list(); };
     w.append(r, det); L.append(w);
     if (openId === t.id) requestAnimationFrame(() => det.style.maxHeight = '320px');
+    if (editOpen === t.id) {
+      $('en').value = t.name; $('ed').value = t.details || '';
+      ['en', 'ed'].forEach(i => $(i).onclick = e => e.stopPropagation());
+      $('ecn').onclick = e => { e.stopPropagation(); editOpen = null; list(); };
+      $('esv').onclick = e => { e.stopPropagation();
+        const nm = $('en').value.trim(), dt = $('ed').value.trim();
+        if (!nm) { $('en').focus(); return; }
+        editOpen = null; t.name = nm; t.details = dt; t.xp = 0; busy[t.id] = 'eval'; list();
+        call('apiEdit', [t.id, { name: nm, details: dt }], res => { delete busy[t.id]; S = res.state; render();
+          const nt = S.tasks.find(x => x.id === t.id); toast(res.msg || (res.changed === false ? 'Без изменений' : nt && nt.xp ? 'Переоценено: +' + nt.xp + ' XP' : 'Сохранено'), '✏️'); });
+      };
+    }
     if (disputeOpen === t.id) {
       $('ta').oninput = () => $('tae').style.display = 'none';
       $('dcn').onclick = e => { e.stopPropagation(); disputeOpen = null; list(); };
@@ -415,7 +432,7 @@ function done(t, b, r) {
     delete busy[t.id]; openId = null;
     const go = () => {
       if (res.rankUp) { $('ring').style.strokeDashoffset = 0; setTimeout(() => { S = res.state; levelUp(res.rankUp); }, 850); }
-      else { S = res.state; render(); if (!t.legend) toast(res.msg || 'Готово', t.xp ? '★' : '⏳'); }
+      else { S = res.state; render(); if (!t.legend) toast(res.msg || 'Готово', t.xp ? '★' : '⏳', () => call('apiUndo', [t.id], r2 => { S = r2.state; render(); toast('Отменено', '↩️'); })); }
     };
     if (t.legend && t.xp) legendFx(t.name, go); else go();
   });
@@ -432,10 +449,11 @@ function share(t) {
   location.href = 'https://t.me/share/url?url=' + encodeURIComponent(txt);
 }
 
-function toast(m, ic) {
+function toast(m, ic, undo) {
   $('tt').textContent = m; $('ti').textContent = ic || '★';
+  const u = $('tu'); u.style.display = undo ? '' : 'none'; u.onclick = undo ? () => { u.style.display = 'none'; undo(); } : null;
   const t = $('toast'); t.style.opacity = 1; t.style.transform = 'none';
-  clearTimeout(window.T); window.T = setTimeout(() => { t.style.opacity = 0; t.style.transform = 'translateY(20px)'; }, 2800);
+  clearTimeout(window.T); window.T = setTimeout(() => { t.style.opacity = 0; t.style.transform = 'translateY(20px)'; u.style.display = 'none'; }, undo ? 5000 : 2800);
 }
 
 function confetti(c) {
@@ -479,11 +497,11 @@ $('add').onclick = () => {
   if (wt === 'Встреча' && !$('atime').value) { ae.textContent = 'Выбери время'; ae.style.display = 'block'; return; }
   const o = { name: v, who: who(), goal: goal(), rep: rep() === 'Нет' ? '' : rep(),
     dtype: wt, date: wt === 'Без даты' ? '' : $('adate').value, time: wt === 'Встреча' ? $('atime').value : '',
-    legend: legOn, legendWhy: legOn ? $('lgt').value.trim() : '' };
+    legend: legOn, legendWhy: legOn ? $('lgt').value.trim() : '', details: $('adet').value.trim() };
   const tmp = 'tmp' + Date.now();
   S.tasks.unshift({ id: tmp, name: o.name, who: o.who, goal: o.goal, rep: o.rep, dtype: o.dtype, date: o.date, time: o.time, legendAsk: o.legend, xp: 0, s: 0, i: 0, why: '', disputed: false, pending: false, locked: false });
   busy[tmp] = 'eval';
-  legOn = false; $('lg').classList.remove('on'); $('lgw').style.display = 'none'; $('lgt').value = '';
+  legOn = false; $('lg').classList.remove('on'); $('lgw').style.display = 'none'; $('lgt').value = ''; $('adet').value = '';
   $('inp').value = ''; grow(); $('adate').value = ''; $('atime').value = ''; sh = 0; $('sheet').style.maxHeight = '0'; $('nb').textContent = '＋ Новая'; list();
   if (o.who !== 'Я') share({ name: o.name });
   call('apiAdd', [o], res => { delete busy[tmp]; S = res.state; render();
