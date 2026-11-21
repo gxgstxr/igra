@@ -480,6 +480,7 @@ function list() {
     if (t.date) m.push(dLabel(t));
     m.push((t.goal === 'Бизнес' ? '🏢 ' : '⚖️ ') + t.goal);
     if (t.who !== 'Я') m.push('👤 ' + esc(t.who));
+    if (t.tdDone) m.push('<span style="color:#1F8A63">✅ Гриша закрыл в Todoist</span>'); else if (t.td) m.push('📋 в Todoist');
     if (t.rep) m.push('🔁 ' + t.rep.toLowerCase());
     if (t.locked && !t.pending) m.push('вернётся ' + t.back);
     if (t.pending) m.push('выполнено, ждёт оценки');
