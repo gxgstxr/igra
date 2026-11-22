@@ -332,11 +332,11 @@ const f = n => Math.round(n).toLocaleString('ru-RU');
 const mln = n => (n / 1e6).toFixed(2).replace('.', ',') + ' млн';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-function call(fn, args, ok) {
+function call(fn, args, ok, fail) {
   fetch(API_URL, { method: 'POST', body: JSON.stringify({ k: K, fn: fn, args: args || [] }) })
     .then(r => r.json())
     .then(j => { if (!j.ok) throw new Error(j.error || 'Ошибка'); ok(j.data); })
-    .catch(e => { busy = {}; toast(e.message === 'Failed to fetch' ? 'Нет связи с сервером' : (e.message || String(e)), '⚠️'); if (S) render(); });
+    .catch(e => { busy = {}; if (fail) { try { fail(e); } catch (x) {} } toast(/Failed to fetch|Load failed|NetworkError/i.test(e.message) ? 'Нет связи с сервером — проверь, сохранилось ли' : (e.message || String(e)), '⚠️'); if (S) render(); });
 }
 let INIT = null; try { INIT = JSON.parse(localStorage.getItem('gameState') || 'null'); } catch (e) {}
 let splashT0 = Date.now(), splashGone = false;
@@ -514,8 +514,11 @@ function list() {
         const b = document.createElement('button'); b.textContent = n; if (n === t.who) b.className = 'on';
         b.onclick = e => { e.stopPropagation(); whoOpen = null;
           if (n === t.who) { list(); return; }
-          t.who = n; list(); if (n !== 'Я') share(t);
-          call('apiSetWho', [t.id, n], res => { S = res.state; render(); toast(n === 'Я' ? 'Теперь задача твоя' : 'Передано: ' + n, '👤'); }); };
+          t.who = n; list();
+          call('apiSetWho', [t.id, n], res => { S = res.state; render();
+            if (n === 'Я') toast('Теперь задача твоя', '👤');
+            else if (n === 'Гриша') toast('Передано Грише — задача в Todoist', '📋');
+            else toast('Передано: ' + n, '👤', () => share(t), '📤 Переслать'); }); };
         sg.append(b);
       });
       act.append(sg);
@@ -538,7 +541,7 @@ function list() {
       act.append(bar);
     }
     inner.append(act); det.append(inner);
-    r.onclick = () => { openId = openId === t.id ? null : t.id; delAsk = null; disputeOpen = null; whoOpen = null; dateOpen = null; editOpen = null; list(); };
+    r.onclick = () => { if (String(t.id).indexOf('tmp') === 0) { toast('Задача ещё сохраняется — пару секунд', '⏳'); return; } openId = openId === t.id ? null : t.id; delAsk = null; disputeOpen = null; whoOpen = null; dateOpen = null; editOpen = null; list(); };
     w.append(r, det); L.append(w);
     if (openId === t.id) requestAnimationFrame(() => det.style.maxHeight = '320px');
     if (editOpen === t.id) {
@@ -611,9 +614,9 @@ function share(t) {
   location.href = 'https://t.me/share/url?url=' + encodeURIComponent(txt);
 }
 
-function toast(m, ic, undo) {
+function toast(m, ic, undo, label) {
   $('tt').textContent = m; $('ti').textContent = ic || '★';
-  const u = $('tu'); u.style.display = undo ? '' : 'none'; u.onclick = undo ? () => { u.style.display = 'none'; undo(); } : null;
+  const u = $('tu'); u.textContent = label || 'Отменить'; u.style.display = undo ? '' : 'none'; u.onclick = undo ? () => { u.style.display = 'none'; undo(); } : null;
   const t = $('toast'); t.style.opacity = 1; t.style.transform = 'none';
   clearTimeout(window.T); window.T = setTimeout(() => { t.style.opacity = 0; t.style.transform = 'translateY(20px)'; u.style.display = 'none'; }, undo ? 5000 : 2800);
 }
@@ -678,10 +681,13 @@ $('add').onclick = () => {
   busy[tmp] = 'eval';
   legOn = false; $('lg').classList.remove('on'); $('lgw').style.display = 'none'; $('lgt').value = ''; $('adet').value = '';
   $('inp').value = ''; grow(); $('adate').value = ''; $('atime').value = ''; setSheet(false); list();
-  if (o.who !== 'Я') share({ name: o.name });
   call('apiAdd', [o], res => { delete busy[tmp]; S = res.state; render();
     const t = S.tasks.find(x => x.name === o.name && x.xp);
-    toast(res.msg || (t ? 'Оценено: +' + t.xp + ' XP' : 'Задача добавлена'), res.msg ? '⏳' : '⚖️'); });
+    const m = res.msg || (t ? 'Оценено: +' + t.xp + ' XP' : 'Задача добавлена');
+    if (o.who === 'Гриша') toast(m + ' · ушла Грише в Todoist', '📋');
+    else if (o.who !== 'Я') toast(m, '👤', () => share({ name: o.name }), '📤 Переслать');
+    else toast(m, res.msg ? '⏳' : '⚖️'); },
+    () => { delete busy[tmp]; S.tasks = S.tasks.filter(x => x.id !== tmp); });
 };
 $('inp').oninput = () => $('err').style.display = 'none';
 $('inp').onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('add').onclick(); } };
